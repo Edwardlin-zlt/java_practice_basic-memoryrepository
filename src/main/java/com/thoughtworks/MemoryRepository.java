@@ -10,15 +10,8 @@ public class MemoryRepository<E> implements Repository<E> {
     Map<String, E> memory = new HashMap<>();
 
     @Override
-    public void save(String id, E entity) {
-        Object curValue;
-        if ((curValue = memory.get(id)) != null || memory.containsKey(id)) {
-            // 应该Raise错误吧？有个专门的update方法, 但是save方法的实现也能做到update
-            // 先写个sout假装raise了错误
-            System.out.println("Already got this id in memory, try update");
-        } else {
-            memory.put(id, entity);
-        }
+    public E save(String id, E entity) {
+        return memory.put(id, entity);
     }
 
     @Override
@@ -38,7 +31,7 @@ public class MemoryRepository<E> implements Repository<E> {
 
     @Override
     public E update(String id, E entity) {
-//         replace 和　put　有什么区别呢
+        // replace 只在有key的时候才会put
         return memory.replace(id, entity);
     }
 

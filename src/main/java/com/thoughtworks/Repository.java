@@ -1,10 +1,9 @@
 package com.thoughtworks;
 
-import java.util.IdentityHashMap;
 import java.util.List;
 
 public interface Repository<E> {
-    void save(String id, E entity);
+    E save(String id, E entity);
 
     E get(String id);
 
